@@ -3,7 +3,9 @@ title: "Managing Climber Impact: Analyzing High Traffic Routes at Indian Creek"
 date: 2023-02-14
 img_path: /images/creek_traffic/
 ---
-This analysis utilizes my climbing analytic tool <a href="https://giza-levyb.streamlit.app/" target="_blank">Giza</a>, check it out!
+This analysis utilizes my climbing analytic tool Giza, check it out!
+
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://giza-levyb.streamlit.app/)
 # Introduction
 As climbing becomes more popular, conservation efforts become more important. Conservation efforts are critical in reducing impact on the natural resources of rock climbing features, to protect access, and to preserve the "primitive character" of outdoor recreation. If the community embraces self-policing of agreed upon values, then more restrictive enforcement can be avoided. This concept is already well ingrained in the climbing community, as seen by the proliferation of organizations such as The [Access Fund](https://www.accessfund.org/) and [Friends of Indian Creek](https://friendsofindiancreek.wordpress.com/). Failure to adhere to acceptable behavior can give rise to controversial actions by official land managers such as Yosemite's recent move to [permit big wall climbs](https://www.accessfund.org/news-and-events/news/yosemite-wilderness-climbing-permits-what-you-need-to-know). In short, it is up to the community.
 
@@ -155,3 +157,5 @@ With an upper fence at ~0.42, I'm again going to relax the cutoff to 0.33.
 The routes here tend to be of a more moderate grade. This is expected as climbs 5.9 and under are relatively uncommon at Indian Creek. These climbs are likely to be repeated by climbers of all skill levels due to their accessibility.
 
 These routes may be less popular than those ranked by raw number of ticks, but they represent a particualarly important opportunity. Namely, they receive high traffic due to repeated use by the same people. We hold true that everyone has an equal claim to the resource, so if a route is just wildly popular and a heap of people are each responsibly claiming their use, there is not much to be done without getting more restrictive. In this case, use can be drastically reduced by targeting the small group of repeat users.
+
+# Conclusion
