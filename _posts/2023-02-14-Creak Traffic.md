@@ -1,7 +1,7 @@
 ---
 title: "Managing Climber Impact: Analyzing High Traffic Routes at Indian Creek"
 date: 2023-02-14
-img_path: /images/Creek_Traffic/
+img_path: /images/creek_traffic/
 ---
 This analysis utilizes my climbing analytic tool <a href="https://giza-levyb.streamlit.app/" target="_blank">Giza</a>, check it out!
 # Introduction
