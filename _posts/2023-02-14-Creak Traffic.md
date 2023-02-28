@@ -1,6 +1,6 @@
 ---
-title: "Managing Climber Impact: Analyzing High Traffic Routes at Indian Creek"
-date: 2023-02-14
+title: "Managing Climber Impact: Identifying High Traffic Routes at Indian Creek"
+date: 2023-02-27
 img_path: /images/creek_traffic/
 ---
 This analysis utilizes my climbing analytic tool Giza, check it out!
@@ -64,6 +64,7 @@ Given that this data is self reported, it falls prey to common sampling bias of 
 * Over-represents favorable results like successful onsights, under-represents unfavorable results like fell/hungs on easier climbs.
 
 # Analysis
+This analysis will begin by investigating a handful of metrics, and selecting a subset of routes that stick out within that particular metric. This is as useful as a data exploration tool as it is to make meaningful conclusions. Afterwards, a combination metric can be formulated to identify additional routes that did not qualify from individual metrics, but in combination are notable, as well as provide overall rank for the final list.
 ## Number of Ticks
 Number of ticks provides a good starting point by which to judge a route. It is a simple representation for magnitude of use. Furthermore, it represents the number of entries by which the other metrics are based on. If the number of ticks is low, then the climb is likely not often climbed. With too few entries, we cannot be confident that our additional metrics are accurate representations.
 
@@ -111,10 +112,33 @@ All other traffic metrics are “deeper” investigations into tick trends, and 
 {% include creak_traffic/Tick_Cutoff_30.html %}
 {% include creak_traffic/Tick_Cutoff_100.html %}
 
-## Traffic Velocity and Acceleration
-Ranking by overall number of ticks is a great start, but fails to normalize for any time related factor. For example, a climb may have been established later or even omitted from the mountain project database for some time. A climb such as this may actually experience heavy traffic but would not get picked up when ranking by number of ticks alone.
+## Tick Velocity
+Ranking by overall number of ticks is a great start, but fails to normalize for any time related factor. For example, a climb may have been established later or even omitted from the mountain project database for some time. A climb such as this may actually experience heavy traffic but would not get picked up when ranking by number of ticks alone. The goal of this metric is to catch routes that are experiencing a burst in traffic within a recent time frame.
 
-Since climbing is heavily seasonal, it makes the most sense to partition by year to suppress the noise of that natural traffic cycle.
+Since climbing is heavily seasonal, it makes the most sense to partition by year to suppress the noise of that natural seasonal cycle.
+
+Let's take a look at ticks over the years for a select subset of routes. This is every 10th route as ordered by highest sum ticks.
+{% include creak_traffic/YoY_Sum_Ticks.html %}
+Regardless of overall popularity, all routes tend to gain ticks year over year. It is likely that Mountain Project use as well as the propensity of a given climber to tick after climbing are increasing. It is also likely that climbing, and climbing at Indian Creek specifically is becoming more popular.
+
+Let's investigate this deeper on all routes with >100 ticks.
+{% include creak_traffic/YoY_Sum_Ticks_Box.html %}
+{% include creak_traffic/Mean_YoY_Sum_Ticks_Box.html %}
+
+2020 experienced the first negative median difference since recording began. This is most likely a result of covid and related fears of exposure limiting travel. 2021 was subsequently a breakout year as covid concerns leveled out, and outdoor recreation gained boosted popularity. The jury is still out on 2022, it may turn out to be a relative return to "normal" expected growth or a short pull-back from the previous year extreme and thus a continuation of more extreme exponential growth. Based on the box plots, it seems that YoY change was particularly extreme in both directions through the covid years. It will be interesting to see how this manifests in the coming years.
+
+Let's see if we can identify specific routes that seem to be experiencing a consistent increase in popularity, outside of what may be considered a normal velocity. We normalize by number of ticks once again in order to decouple raw popularity. We also only consider routes with more than 100 ticks, and consider only the last 5 years so to prioritize a recent time frame.
+{% include creak_traffic/Norm_Average5yr_Tick_Velocity.html %}
+
+So we get 0.052 as an upper fence. That makes a fine cutoff.
+<details open>
+<summary><b>Tick Velocity Table</b></summary>
+{% include creak_traffic/Tick_Velo_Table.html %}
+</details>
+<br><br>
+It is starkly apparent to me that these routes tend to be quite short for Indian Creek standard, typically in the 45-60ft range compared to a more typical 80-100ft. A shorter climb is typically more approachable, so it is sensible that as climbs like these are discovered by a wider audience that they gain popular sentiment.
+
+These routes are important because they are likely not heavily damaged yet, though their rising popularity puts them at risk. This table also allows us to recognizes Habitado and Sinbad Wall as crags that seem to be experiencing a surge in popularity.
 
 ## Heavily Top Roped Climbs
 Lead ratio is a simple metric that represents the proportion of ticks that claim a lead attempt vs. a top rope or follow attempt. A lead ratio of 0.5 suggests that in a typical climbing team of two, one partner led and one followed. While this is expected for multi-pitch climbs, for a crag you are likely to get groups where many people are going for a lead attempt or many people would like to top rope a route. In general, a lead ratio of 0.5 is the expected center and suggests that a route is receiving generic traffic.
@@ -154,8 +178,19 @@ With an upper fence at ~0.42, I'm again going to relax the cutoff to 0.33.
 </details>
 <br><br>
 
-The routes here tend to be of a more moderate grade. This is expected as climbs 5.9 and under are relatively uncommon at Indian Creek. These climbs are likely to be repeated by climbers of all skill levels due to their accessibility.
+The routes here tend to be of a more moderate grade. This is largely because we are detecting repeat *sends*, not repeat *attempts*. This measure then under-represents climbs that many people have sent, then failed to send on repeat attempts. Additionally, climbs 5.9 and under are relatively uncommon at Indian Creek. These climbs are likely to be repeated by climbers of all skill levels due to their accessibility.
 
 These routes may be less popular than those ranked by raw number of ticks, but they represent a particualarly important opportunity. Namely, they receive high traffic due to repeated use by the same people. We hold true that everyone has an equal claim to the resource, so if a route is just wildly popular and a heap of people are each responsibly claiming their use, there is not much to be done without getting more restrictive. In this case, use can be drastically reduced by targeting the small group of repeat users.
+
+## Combination Metric
+The simplest way to normalize among these different factors is to sum the [Z (standard) score](https://en.wikipedia.org/wiki/Standard_score), which is simply how many standard deviations from the mean the value is. If one believes one factor is more important than the others, you can weight it by a scalar. Based on my own bias, I weight the metrics as follows:
+
+C<sub>Score</sub> = 0.4 \* Z<sub>Num Ticks</sub> + 0.3 \* Z<sub>Tick Velo</sub> + 0.15 \* Z<sub>Lead Ratio</sub> + 0.15 \* Z<sub>Repeat Sender</sub>
+
+In what may seem a silly thing to do, the cumulative score can be calculated as a Z-score as well. This re-casts these numbers from an arbitrary scale to a more meaningful frame of reference.
+
+{% include creak_traffic/Cum_Hist.html %}
+
+At a glance, I would qualify any route outside the upper fence at ~1.75 as "critical" and any route in the 1.00-1.75 range as "notable".
 
 # Conclusion
