@@ -1,6 +1,6 @@
 ---
 title: "A Retrospective on my Giza Project"
-date: 2021-01-12
+date: 2023-01-12
 img_path: /images/giza_retro/
 ---
 **Link to Project:**
