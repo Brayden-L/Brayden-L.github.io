@@ -94,7 +94,7 @@ The unstructured nature makes a simple regex solution impossible. A cool future 
 For now, we just have to consider that multi-pitch data is less useful. This is not the end of the world, as most performance centric concerns typically focus on single pitch climbs anyway.
 
 # Data Cleaning
-Once the CSV is successfully transmitted to a pandas dataframe, we need to perform bread and butter data cleansing.
+Once the CSV is successfully transmitted to a pandas dataframe, we need to perform bread and butter data cleaning.
 ## Data Type Correction
 * Date columns go from string to pandas datetime, and forced to a simple %Y-%m-%d format since day is the highest resolution required.
 * Rating, Route Type, Style, Lead Style go from string to pandas categorical type. This saves drastically on dataframe overhead.
@@ -168,7 +168,7 @@ A nice lesson learned here was utilizing the lxml parser as opposed to the stand
 ![Tick Ex](Tick Ex.png)
 *Example Tick Data Source*
 
-# Tick Dataframe Cleansing
+# Tick Dataframe Cleaning
 Once an individual climbs tick dataframe is constructed, it needs to be cleaned up like any other dataset.
 * Missing data needs to be handled as Nonetype.
 * Dates turned from strings to datetime objects.
