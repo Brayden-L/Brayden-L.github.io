@@ -1,7 +1,7 @@
 ---
 title: "Multiple Linear Regression For Predicting Route Quality"
 date: 2023-03-15
-img_path: /images/Linear_Regression_Route_Quality/
+img_path: /images/linear_regression_route_quality/
 ---
 # Introduction
 Let's see how good of a model we can build to predict rock climbing route quality.
