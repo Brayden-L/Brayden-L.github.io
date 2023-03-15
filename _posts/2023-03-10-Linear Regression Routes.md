@@ -10,7 +10,7 @@ I've scraped all non-boulder routes from [Mountain Project](https://www.mountain
 
 Bishop Area, Black Canyon of the Gunnison, Eldorado Canyon, High Sierra, Index, Indian Creek, Joshua Tree, Lake Tahoe, Leavenworth, Mammoth Lakes, Moab Area, New River Gorge, Red River Gorge, Red Rock, Rifle, Rumney, Smith Rock, Squamish, Ten Sleep, The Needles (CA), Tuolomne, Vedauwoo, Yosemite, Zion.
 
-We will be using a multiple linear regression model. While we care about our prediction accuracy (R-Squared), we will be prioritizing inferential power. Though we will attempt and qualify more complex implimentation, we may opt to not include such measures so to maintain a simple interpretability of the model.
+We will be using a multiple linear regression model. While we care about our prediction accuracy (R-Squared), we will be prioritizing inferential power. Though we will attempt and qualify more complex implementation, we may opt to not include such measures so to maintain a simple interpretability of the model.
 
 # Selecting a Response Variable
 Creating a meaningful summary metric for quality given a series of votes is not an uncommon problem to have. The first thing that typically comes to mind is to use a simple arithmetic mean, which isn't a bad idea, but it does not do a very good job of accounting for a difference in number of votes. An item with 1x5star review will be ranked higher than an item with 999x5star reviews and 1x1star review. A statisticians perspective says to consider your pool of votes to be a sampled subset of your true population, which can be used to estimate the true population value. It depends, like most things in statistics, on the number of samples. It is important to note that we are not saying items with low vote counts are inherently worse, but we are less certain of their true state. By using this concept we build a list that is our proposed "best guess" estimate of the ranking.
@@ -59,7 +59,7 @@ Start by checking the head and seeing what we are working with.
 
 **Route** - String. Name of route. high cardinality but not necessarily unique. Likely not a particularly useful predictor, but an important human-interpretable reference for talking about any specific entry.
 
-**Location** - String. Series of sub-locations listed from from "leaf" to "root". Useful to create categorical groupings of entries in close proximity.
+**Location** - String. Series of sub-locations listed from "leaf" to "root". Useful to create categorical groupings of entries in close proximity.
 
 **Area Latitude** - Float. Latitude of terminal sub-location. Useful for plotting geo-spatial data. Likely high correlation with leaf of location string.
 
@@ -113,7 +113,7 @@ This is useful for meaningful analysis once our model is trained, but is not use
 ## Location
 There are no null values.
 
-This column is useful to group nearby climbs together. It is currently a string, but it can easily be turned into a list. Each step in the sub-location tree is meaningful information. For example the fact that a climb is located in California vs. Utah is useful information. As is the fact that a climb exists in the upper or lower valley of Yosemite specifically. It is easy to imagine that a particular wall or area is high or low quality. This information is particularly useful because it may indirectly measure qualities that we otherwise do not have a good measure of, for example rock quality or accessability.
+This column is useful to group nearby climbs together. It is currently a string, but it can easily be turned into a list. Each step in the sub-location tree is meaningful information. For example the fact that a climb is located in California vs. Utah is useful information. As is the fact that a climb exists in the upper or lower valley of Yosemite specifically. It is easy to imagine that a particular wall or area is high or low quality. This information is particularly useful because it may indirectly measure qualities that we otherwise do not have a good measure of, for example rock quality or accessibility.
 
 In general though, this feature is superceded by longitude and latitude. Lon/Lat provide extremely similar information in a simpler to understand and compute form factor. For this reason, we will drop this location column to prevent unwanted collinearity.
 
@@ -146,7 +146,7 @@ To homogenize to the (more popular) letter grade system, you need to round each 
 
 There are less hard routes. This is in large part because developing a harder route takes more effort, and less people are capable of climbing at that grade.
 
-It is also interesting to point out the discrepency on the transition from 'd' to 'a' (ex: 5.10d to 5.11a). It is commonly believed that climbers prefer an 'a' climb over a 'd' climb, primarily for ego related reasons. As such it is often hypothesized that establishing routes at an 'a' grade is preferred if it is close, so that more people will want to climb the route. It is interesting to see that this looks to be the case until the grades are so hard (>5.13d) that ego chasing probably isn't necessary.
+It is also interesting to point out the discrepancy on the transition from 'd' to 'a' (ex: 5.10d to 5.11a). It is commonly believed that climbers prefer an 'a' climb over a 'd' climb, primarily for ego related reasons. As such it is often hypothesized that establishing routes at an 'a' grade is preferred if it is close, so that more people will want to climb the route. It is interesting to see that this looks to be the case until the grades are so hard (>5.13d) that ego chasing probably isn't necessary.
 
 ## Risk
 Most routes (92%) have a null risk value. There is however meaningful information in that null value, namely it designates that the route is overall safe. This can be represented in character with the rest of the scale in the movie theater analogy as a value of "G".
@@ -298,8 +298,8 @@ Error looks solidly normal via the Residual QQ plot. Our Prob(Omnibus) and Prob(
 Our linearity of residuals is ok. The only concerning element is the over-estimation at the high end of the fitted values greater than about 4. Perhaps with some outlier removal and some model tuning we can get this to a better place.
 ![Resid Vs. Fitted Val](Resid_FittedVal.png)
 
-## Homoscedaity
-Our P-Value for our **Breusch-Pagan Lagrange Multiplier Test is near zero (Less than 1E-182)**. We can be confident of homoscedaity.
+## Homoscedasticity
+Our P-Value for our **Breusch-Pagan Lagrange Multiplier Test is near zero (Less than 1E-182)**. We can be confident of Homoscedasticity.
 
 ## Correlation of Error Terms
 Our **Durbin Watson Test Value is 1.584**, which is 2.0>x>1.0 putting us in a good spot. There is no obvious correlation of error terms in the Residuals Vs. Fitted Values Plot.
@@ -342,7 +342,7 @@ We can make the following rough conclusions:
 * A climb being multipitch instead of single pitch raises the stars by ~0.1144. This suggests that all things being equal, climbers enjoy a climb more if it is a multi pitch. This may be a side effect of the fact that a multi-pitch has more opportunities to "wow" the climber. Often times a multi pitch route needs only a few good pitches to convince someone of its quality.
 * If the length is missing then this reduces the stars by ~0.047. Routes with no length are more likely to be climbs that fewer people care about, and therefore are of lower quality.
 * Risk has a relatively light coefficient. For each increase in risk intensity, the stars reduce by 0.0205. This suggests that climbers prefer a climb that is safe with good protection. It seems that climbers that particularly enjoy run-out or dangerous routes are likely a minority.
-* The difference between an onsight ratio of 0 and 1 is a reduction in stars by 0.0197. This is actually counter to what I would have thought. I had predicted that routes that are easier to onsight are more likely to be accepted as a classic. What I think confounds this effect is that onsight ratio is correlated with rating, in that harder routes are harder to onsight. Since rating holds a higher coefficient, this value get's dragged along with it.
+* The difference between an onsight ratio of 0 and 1 is a reduction in stars by 0.0197. This is actually counter to what I would have thought. I had predicted that routes that are easier to onsight are more likely to be accepted as a classic.
 * The area longitude coefficient suggests that as you move East, the stars decrease by 0.0011 per degree. Most people agree that there exists quality climbing at a higher volume in the west versus the east. This is likely biased by my west coast centric selection of areas.
 * For every foot of length, the stars increase by 0.0002. This means roughly for every additional average 100ft multi-pitch pitch, the stars increase by 0.02. This lines up well with a common perception that epic ultra-long routes are of high quality.
 * For every additional tick, the stars increase by 0.004. Since tick counts can reach the 100's quite easily and even to 1000's for very popular routes, this predictor is without a doubt one of the most important. 
@@ -350,7 +350,7 @@ We can make the following rough conclusions:
 * For each increase in rating, the stars increase by 0.065. Consider then 0.26 stars between each number grade 5.10 and up. A likely explanation here is that harder routes simply offer higher quality climbing, this is a common sentiment in the vice versa at lower grades where some may shrug that "the climb didn't offer much interesting'. Additionally, a climber must try much harder on a difficult climb, so likely becomes more attached.
 * For each additional mean attempt to redpoint, the stars increase by 0.0958. I would attribute it to the same "attachment" effect as for rating. A high mean attempt to redpoint suggests a "tricky" route, providing an even deeper attachment and engagement to the climber.
 * As for repeat sender ratio, if the average redpointer returns for 1 additional redpoints compared to the average redpointer not returning, the stars increase by 0.1634. This is sensible as this metric measures "fan favorite" status.
-* The difference between a lead ratio of 0 and 1 is an increase in 0.1634 stars. This suggests that climbs that most people lead are higher quality. I understand that lead ratio typically increases as rating increases, and so believe this to be dragged by the heavy rating effect in much the same way that OS Ratio is.
+* The difference between a lead ratio of 0 and 1 is an increase in 0.1634 stars. This suggests that climbs that most people lead are higher quality. I understand that lead ratio typically increases as rating increases.
 * A climb being trad instead of sport raises the stars by ~0.1901. This suggests that all things being equal, climbers enjoy a climb more if it goes on natural gear.
 
 So a quality climb is likely a difficult yet safe long trad multi-pitch in the northern section of the west coast. Sounds like a modern Yosemite route to me.
@@ -388,7 +388,7 @@ We can inspect the relationship of a predictor on the response variable *conditi
 Much of this is as expected. It is interesting to note that it seems both num ticks and length tend to over estimate at high values. This is likely the source of our poor overall residual performance at high bayesian star values.
 
 ## Regression Diagnostic Plots
-We can inspect the behaviour of these predictors further with regression diagnostic plots. I will use num ticks as an example.
+We can inspect the behavior of these predictors further with regression diagnostic plots. I will use num ticks as an example.
 
 ![Num_Ticks_Reg_Diag](Num_Ticks_Reg_Diag.png)
 

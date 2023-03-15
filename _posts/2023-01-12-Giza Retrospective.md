@@ -67,7 +67,7 @@ Tick lists include additional columns such as: Date, Notes, Style and Lead Style
 ## Roped vs. Boulder
 Roped climbing climbs longer routes using a rope. Bouldering climbs boulders without a rope. From a data analysis perspective, the primary difference is in how users typically record effort. A clean send of a boulder is typically achieved after a great many attempts, typically on the scale of >20. Few if any boulderers record every little attempt, at most recording a "session". In contrast, due to their length, roped climbs are typically not attempted as many times, typically in the <20 range. For this reason, it is reasonable to record each attempt. This allows for much greater data density on roped climbs. This is extremely pronounced for the MP dataset.
 
-Additionally, roped climbs have more specificity when it comes to style. Boulders are either climbed clean the first time for a "flash/onsight", climbed clean after attempts for a "send", or fallen on for an "attempt". Roped climbs in contrast are either led, followed, or top roped. Leading requires a climber to climb above gear and clip protection as they ascend. It is more difficult and dangerous. It is considered a more legitemate style than top-roping or following, as those styles require someone else lead the route for you to set it up. If led, they are either climbed clean the first time for a "flash/onsight", climbed clean after attempts for a "redpoint", or fallen on for a "fell/hung".
+Additionally, roped climbs have more specificity when it comes to style. Boulders are either climbed clean the first time for a "flash/onsight", climbed clean after attempts for a "send", or fallen on for an "attempt". Roped climbs in contrast are either led, followed, or top roped. Leading requires a climber to climb above gear and clip protection as they ascend. It is more difficult and dangerous. It is considered a more legitimate style than top-roping or following, as those styles require someone else lead the route for you to set it up. If led, they are either climbed clean the first time for a "flash/onsight", climbed clean after attempts for a "redpoint", or fallen on for a "fell/hung".
 
 The result of these effects is that better data can typically be yielded from the ticks of a roped climb versus a boulder. Since I'm primarily a roped climber myself, I'm ok with that...
 
@@ -85,7 +85,7 @@ The styles are different enough that most people track their progress for the tw
 *Placing a Cam (Left), Approaching a Bolt (Right) [[Source 1](https://www.mountainproject.com/photo/118022317)] [[Source 2](https://www.mountainproject.com/photo/112149169)]*
 
 ## Multi-Pitch vs. Single-Pitch
-For a given trad or sport route, it may be composed of a single pitch or multiple pitches. A pitch typically ends at a logical rest such as a ledge, or for convenience sake before a large traverse or difficult section. A pitch is typically 80-120ft. long. Some climbs are single-pitch, and one simply climbs up and returns to the ground. Some climbs are multi-pitch where a series of pitchs are climbed. If the route tops out a formation the climbing team may walk off a less technical section of the formation, or opt for a series of rappels.
+For a given trad or sport route, it may be composed of a single pitch or multiple pitches. A pitch typically ends at a logical rest such as a ledge, or for convenience sake before a large traverse or difficult section. A pitch is typically 80-120ft. long. Some climbs are single-pitch, and one simply climbs up and returns to the ground. Some climbs are multi-pitch where a series of pitches are climbed. If the route tops out a formation the climbing team may walk off a less technical section of the formation, or opt for a series of rappels.
 
 The important thing to note here is that MP does a poor job providing adequate data for a multi-pitch climb. It lists only a single length and grade for the whole climb, providing no details for individual pitches. Typically a grade is given for the hardest pitch on the climb. The issue is that there is no way to tell if a 4 pitch 5.9 climb is 3 pitches of 5.4 and one 5.9, or 4 consecutive 5.9 pitches. The latter is much more difficult. Typically The details are provided in a description or comment on the climb, but this is entirely unstructured.
 
@@ -123,7 +123,7 @@ An improvement on this system would be to sample all climbs within the same area
 
 As with all user submitted data, there are often typos and errors. We can easily catch egregious mistakes with a basic minimum and maximum value, based on the tallest and shortest known climb. Otherwise, we frankly have no way to know. This gives additional reason to not utilize this value if possible, since its integrity is particularly problematic.
 
-That is to say that even if someone tries their best to report an accurate length, it is subject to all sorts of real world error sources. No one is carrying a measuring tape, most are estimating by eye based on the rope they are climbing with to nearest 10ft or so. Then there is the age old argument of whether to only count base to summit elevation gain, or include traverses and down-climbs. It can make your head spin.
+That is to say that even if someone tries their best to report an accurate length, it is subject to all sorts of real world error sources. No one is carrying a measuring tape, most are estimating by eye based on the rope they are climbing with to the nearest 10ft or so. Then there is the age old argument of whether to only count base to summit elevation gain, or include traverses and down-climbs. It can make your head spin.
 
 # Grade Homogenization
 This is a big one. For YDS, the letter grade system is the standard and is as follows:
@@ -146,7 +146,7 @@ If we wanted to homegenize between the three variations, it is easy to assign th
 
 Alternatively to go from a sign or letter mix grade to a letter grade, you need to assign it up or down. This provides resolution at the expense of inaccuracy. I thought about allowing the user to manually assign these values based on their opinion, but that seemed like a lot of work to ask of a user. Additionally, if they had not yet climbed it, how could they know? I settled on allowing the user to make their own choice on which scale to use, and how to round. I prefer the letter system and a randomized equal sampling of rounding up and down as it provides a fair inaccuracy and the best resolution.
 
-The same choice must be used for boulder V-grades, but it a choice between a flat no-sign system and one with "+"s and "-"s.
+The same choice must be used for boulder V-grades, but it is a choice between a flat no-sign system and one with "+"s and "-"s.
 
 Consider the following grade conversion chart, and imagine that this does not even consider the subtler variants!
 
@@ -197,7 +197,7 @@ I'm not kidding myself, Streamlit makes the front-end implementation of all of t
 * Complete filtering which allows for full customization of dataset analysis by the user.
 * The filtering components can be relocated to the sidebar to allow for tinkering while viewing key charts.
 * Multiple options for sub-type partitioning key charts by key categorical types and time groupings.
-* Slick customizeable interactive tables using Aggrid, complete with hyperlinked route names for easy referencing.
+* Slick customizable interactive tables using Aggrid, complete with hyperlinked route names for easy referencing.
 * Memoization and caching to reduce redundant computation by Streamlit.
 ![Frontend Ex](Frontend Ex.gif)
 *Complex type and time partitioning*
