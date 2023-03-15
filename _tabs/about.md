@@ -4,7 +4,7 @@ icon: fas fa-info-circle
 order: 4
 ---
 
-I've become attached to the level of insight that interactive plots and tables give to my data analysis. A PDF feels underbaked when I'm trying to impress, and a full blown interactive app is overkill. This is a space for those in-betweeners.
+I've become attached to the level of insight that interactive plots and tables give to my data analysis. A PDF often feels underbaked, and a full blown interactive app is overkill. This is a space for those in-betweeners.
 
 If you want to work with me, reach out via the contacts in the sidebar.
 

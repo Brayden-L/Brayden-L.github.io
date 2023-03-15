@@ -211,11 +211,11 @@ Routes with a low lead ratio are heavily top roped. There is a potential basic e
 
 Routes with a high repeat send metric are also up for debate. I expected outliers in this metric to be a more diverse set of "underground favorites". As it turns out, the outliers tend to be favorites mostly for their lower difficulty, shorter length, and overall approachability. These climbs are important for beginners to cut their teeth on. There is a familiar argument to be made that these climbs may be best left as sacrificial in nature. Approachable routes will always be popular.
 <br><br><br><br>
-I'm perpetually inspired by the simple effectiveness of: "PLEASE DO NOT put trash in toilets, it is extremely difficult to remove."
+I'm perpetually inspired by the simple effectiveness of the state owned land pit toilet warnings: "PLEASE DO NOT put trash in toilets, it is extremely difficult to remove."
 
-I've attempted to craft my own warning message in the for the purpose of this analysis.
+I've attempted to craft my own warning message for the purpose of this analysis.
 
-**"Indian Creek sandstone is irreperably damaged little by little when climbed. Consider climbing popular routes such as this just a few times to preserve these beloved lines for future generations of climbers."**
+**"Indian Creek sandstone is irreperably damaged little by little when climbed. Consider climbing popular routes such as this just a few times to minimize impact and preserve these beloved lines for future generations of climbers."**
 
 Thank you for reading.
 ![Creek Landscape](Creek Landscape.jpg)
