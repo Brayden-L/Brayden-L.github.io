@@ -324,7 +324,7 @@ We should consider interaction terms between predictors. The following have a P-
 {% include linear_regression_routes/Interaction_Table.html %}
 </details>
 
-Implementing all of these interactions brings our **R-Squared value to 0.567**.
+Implementing all of these interactions brings our **R-Squared value to 0.567**. Note that we are likely just over-fitting our model here by adding more features. A more effective test would utilize a cross validated train-test split. We will not be doing that here, but will be doing that in the future.
 
 To allow for ease of interpretability, we will ignore interactions for now.
 
