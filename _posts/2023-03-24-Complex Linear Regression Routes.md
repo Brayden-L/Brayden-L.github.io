@@ -151,6 +151,21 @@ Another important option to make here is whether or not to include a "Missing Va
 
 With that being said, we will first implement our basic imputations, and consider Stochastic Regression and Multiple Imputation as potential future improvements. We will however be implementing the regression imputation via a pipeline to avoid data leakage. We will also be considering basic simple imputation in place of regression imputation.
 
+```python
+preproc_feature_list = ['Rating', 'Length', 'Area Latitude', 'Area Longitude', 'Risk', 'Num Ticks', 'Lead Ratio', 'OS Ratio', 'Repeat Sender Ratio', 'Mean Attempts To RP', 'Is Trad']
+
+tick_metric_simp_imp_bool = True
+missing_ind_bool = False
+
+if tick_metric_simp_imp_bool:
+    feat_impute_method = make_column_transformer((SimpleImputer(strategy='median', add_indicator=missing_ind_bool), ['OS Ratio', 'Lead Ratio']), 
+                                                 (SimpleImputer(strategy='constant', fill_value=1, add_indicator=missing_ind_bool), ['Repeat Sender Ratio', 'Mean Attempts To RP']), 
+                                                 remainder='passthrough', verbose_feature_names_out=False)
+else:
+    feat_impute_method = make_column_transformer((IterativeImputer(min_value=0, add_indicator=missing_ind_bool), preproc_feature_list), 
+                                                 remainder='passthrough', verbose_feature_names_out=False)
+```
+
 ## Categorical Encoding
 We are quite lucky that our categorical features are either binary, or ordinal. We do not have to worry about flooding our feature space with one-hot encoding and chancing the curse of dimensionality. We also do not have to worry about selecting an alternative from the possible options of: hashing, binary, frequency, target, leave one out, m-estimate, james stein, weight of evidence or catboost encoders. Since our simple encoding scheme does not pull information from the dataset at large, we do not have to worry about pipelining and data leakage.
 
@@ -178,10 +193,30 @@ This step was not necessary when we were doing OLS Linear Regression. However, s
 
 Our features are certainly not all gaussian, and many have outliers. We may well benefit from one over the other but to keep things simple we will begin with just using the standard scaler.
 
-I would also note that we do not want to scale our binary category encoded features. We can avoid this by using a "make_column_selector" that only considers columns with values other than just 0 and 1.
+I would also note that we do not want to scale our binary category encoded features. We can avoid this by using a "make_column_selector".
+
+```python
+std_scaler = StandardScaler()
+normalize_scaler = MinMaxScaler(feature_range = (0, 1))
+robust_scaler = RobustScaler()
+quant_scaler = QuantileTransformer()
+power_scaler = PowerTransformer()
+
+scaler_list = (std_scaler, normalize_scaler, robust_scaler, quant_scaler, power_scaler)
+scaler_sel = make_column_transformer((quant_scaler, preproc_feature_list), remainder='passthrough', verbose_feature_names_out=False)
+```
+
+## PreProcessing Pipeline
+It is very basic, but we can create our preprocessing pipeline as follows:
+```python
+preproc_pipe = Pipeline([
+    ("imputer", feat_impute_method),
+    ("scaler", scaler_sel)
+])
+```
 
 # EDA
-So we've got n=12,794 entries, and p=16 features (5 of which are "Missing Value" features). Let's take a quick look at our basic distribution shape and inter-feature correlations.
+So we've got n=12,794 entries, and p=11 or 16 features (the additional potential 5 of which are "Missing Value" features). Let's take a quick look at our basic distribution shape and inter-feature correlations.
 
 With data this dense, I like to see both a kde and regression pairplot.
 ![kde pairplot](pairplot_kde.png)
@@ -220,27 +255,103 @@ For imputation we effectively have a choice between a simple imputation or a reg
 
 It turns out that the best combination is simple imputation with missingval features in combination with quantile scaling. I would note that a simple imputation without missingval features is only a hair worse and much simpler. This is probably the way to go.
 
-Note that this graph is the difference from the minimized RMSE, calculated as **0.3632637297**. This our baseline value going forward.
+Note that this graph is the difference from the minimized RMSE, calculated as **0.3632**. This our baseline value going forward.
 {% include complex_linear_regression_routes/impute_scale_rmse_plot.html %}
 
-## Forward Stepwise Feature Selection / Partial Least Squares / Mutual Info
-Forward stepwise feature selection with a key metric tolerance = 0.001 yields the following features as important: Is Trad, Length, Area Latitude, Num Ticks, Lead Ratio, OS Ratio.
+You'll notice Power Transform is missing here. It didn't play well with my data even using Yeo-Johnson over Box-Cox. It is sensible to me that Quantile Transformer works as well as it does knowing how outlier prone some of the features may be.
 
-Mutual Information gives us the following rough ranking:
+```python
+basic_linreg = LinearRegression()
+basic_linreg_pipe = Pipeline([('preproc', preproc_pipe), ('model', basic_linreg)])
+print(np.mean(np.sqrt(-cross_val_score(basic_linreg_pipe, X_train, y_train, cv=5, scoring='neg_mean_squared_error'))))
+print(np.mean(cross_val_score(basic_linreg_pipe, X_train, y_train, cv=5)))
+```
+
+Even though we are not using cross validation to tune a parameter, we can still use it to get a reliable mean value among folds. Because we are not training our data with the cross-validation, there is no need to apply it to our hold-out test set. That conceptual benefit occurs within each fold as it is training and testing among folds.
+
+## Forward Stepwise Feature Selection / Mutual Info / Partial Least Squares
+**Forward stepwise feature selection** with a key metric tolerance = 0.001 yields the following features as important:
+
+[Is Trad, Length, Area Latitude, Num Ticks, Lead Ratio, OS Ratio]
+
+```python
+# SequentialFeatureSelector isn't set up to work with pipelines nicely, so we had to do it semi-manually.
+X_train_forward_subselect = preproc_pipe.fit_transform(X_train)
+sfs = SequentialFeatureSelector(basic_linreg, n_features_to_select='auto', tol=0.001, cv=5, scoring='neg_mean_squared_error')
+sfs.fit(X_train_forward_subselect, y_train)
+sfs.get_support
+sfs.transform(X_train_forward_subselect)
+```
+
+**Mutual Information** gives us the following rough ranking:
 {% include complex_linear_regression_routes/MI.html %}
 
 This ranking feels relatively fair to me. Certainly Num Ticks and Rating should be up there. I'm surprised that OS Ratio and Repeat Sender Ratio are so high. I expected all of the rest except Length to rank relatively low. These subversions of expectation are in part why this kind of analysis is important.
 
-While the feature subset selected by these two methods are fine, I'd trust PLS to do the best job here.
+```python
+X_train_mi = preproc_pipe.fit_transform(X_train)
+
+mi_dat = mutual_info_regression(X_train_mi, y_train)
+print(pd.DataFrame(data=mi_dat, index=X_train_mi.columns, columns=['MI']).sort_values('MI', ascending=False))
+
+sfs = SelectKBest(mutual_info_regression, k=5)
+sfs.fit_transform(X_train_mi, y_train)
+sfs.get_support
+print(sfs.transform(X_train_mi).columns)
+```
+
+**PLS** is another solid choice here.
 {% include complex_linear_regression_routes/PLS.html %}
 
-We see that we bottom have a lot to gain going from 1 to 2 to 3 features, then a bit to gain into 4 and 5 features. From then on there is not much more to gain. I'd say five features may well be sufficient here. While our cross validation yields a value of 0.3678117, when run on our hold-out set we actually get **0.3688534119** which is slightly higher than our baseline but using less than half the features. Those features are: Num Ticks, OS Ratio, Rating, Repeat Sender Ratio, Lead Ratio.
+We see that we bottom have a lot to gain going from 1 to 2 to 3 features, then a bit to gain into 4 and 5 features. From then on there is not much more to gain. I'd say five features may well be sufficient here. While our cross validation yields a value of 0.3678117, when run on our hold-out set we actually get **0.3688** which is slightly higher than our baseline but using less than half the features. Those features are: Num Ticks, OS Ratio, Rating, Repeat Sender Ratio, Lead Ratio.
+
+``` Python
+X_train_mi = preproc_pipe.fit_transform(X_train)
+
+mi_dat = mutual_info_regression(X_train_mi, y_train)
+print(pd.DataFrame(data=mi_dat, index=X_train_mi.columns, columns=['MI']).sort_values('MI', ascending=False))
+
+sfs = SelectKBest(mutual_info_regression, k=5)
+sfs.fit_transform(X_train_mi, y_train)
+sfs.get_support
+print(sfs.transform(X_train_mi).columns)
+```
 
 ## Regularization Methods
-Ridge yields an RMSE of **0.3689514915**. Lasso yields an RMSE of **0.3687951173**, and does not set any feature coefficients to zero. Elastic Net prefers full L1 regularization and yields an equivalent RMSE as for Ridge. The alphas for all of these are near zero suggesting that regularization does not help us too much. This is also clear from the miniscule gains in RMSE.
+Ridge yields an RMSE of **0.3689**. Lasso yields an RMSE of **0.3687**, and does not set any feature coefficients to zero. Elastic Net prefers minimal L1 regularization (L1 ratio = 0.001) and just a bit of regularization (alpha=0.0004). It yields an RMSE of **0.3602**. The alphas for all of these are near zero suggesting that regularization does not help us too much. This is also clear from the modest gains in RMSE.
+
+```python
+ridge = Ridge()
+ridge_pipe = Pipeline([('preproc', preproc_pipe), ('ridge_model', ridge)])
+parameters = {'ridge_model__alpha':np.logspace(-6, 3, 100)}
+ridge_reg= GridSearchCV(ridge_pipe, parameters, scoring='neg_mean_squared_error',cv=5)
+ridge_reg.fit(X_train, y_train)
+print(mean_squared_error(y_test, ridge_reg.best_estimator_.predict(X_test), squared=False))
+print(ridge_reg.best_estimator_.score(X_test, y_test))
+print(ridge_reg.best_estimator_['ridge_model'].coef_)
+
+lasso = Lasso()
+lasso_pipe = Pipeline([('preproc', preproc_pipe), ('lasso_model', lasso)])
+parameters = {'lasso_model__alpha':np.logspace(-6, 3, 100)}
+lasso_reg= GridSearchCV(lasso_pipe, parameters, scoring='neg_mean_squared_error',cv=5)
+lasso_reg.fit(X_train, y_train)
+print(mean_squared_error(y_test, lasso_reg.best_estimator_.predict(X_test), squared=False))
+print(lasso_reg.best_estimator_.score(X_test, y_test))
+print(lasso_reg.best_estimator_['lasso_model'].coef_)
+
+elastic = ElasticNet()
+elastic_pipe = Pipeline([('preproc', preproc_pipe), ('elastic_model', elastic)])
+parameters = {'elastic_model__alpha':np.logspace(-6, 3, 10), 'elastic_model__l1_ratio':np.linspace(0.001,0.999,10)}
+elastic_reg= GridSearchCV(elastic_pipe, parameters, scoring='neg_mean_squared_error',cv=5)
+elastic_reg.fit(X_train, y_train)
+print(mean_squared_error(y_test, elastic_reg.best_estimator_.predict(X_test), squared=False))
+print(elastic_reg.best_estimator_.score(X_test, y_test))
+print(elastic_reg.best_estimator_['elastic_model'].coef_)
+print(elastic_reg.best_estimator_['elastic_model'].get_params)
+```
 
 ## Best Method
-While a simple linear regression earns the lowest RMSE, I would actually suggest that **the best method here is PLC Regression** in large part because of the focused interpretability we get from the dimensional reduction. We earn an RMSE of **0.3688534119**, which is ~9% of our range of 4 for star quality. I believe this is not too shabby. Consider if I told you that I could predict a routes quality within about 0.7 points given only five features (Num Ticks, OS Ratio, Rating, Repeat Sender Ratio, Lead Ratio). While this may not enable us to delineate on a high resolution, it does allow us to predict when a route may be particularly bad or good. For many climbers, this may be good enough.
+While Elastic Net earns the lowest RMSE, I would actually suggest that **the best method here is PLC Regression** in large part because of the focused interpretability we get from the dimensional reduction. The additional 7 or so features earn us a few extra hundredths of RMSE reduction, which to me makes them more trouble then they are worth. With PLC we earn an RMSE of **0.3688**, which is ~9% of our range of 4 for star quality. I believe this is not too shabby as we are only considering five features (Num Ticks, OS Ratio, Rating, Repeat Sender Ratio, Lead Ratio). While this may not enable us to delineate on a high resolution, it does allow us to predict when a route may be particularly bad or good. For many climbers, this may be good enough.
 
 # Conclusion
-Overall I'm frankly a little disappointed with how little my tinkering improved the model. This is real data after all, flaws and all. I look forward to seeing what a tree-based model can do for us. Ultimately, I think that we simply do not have enough meaningful features to explain all of our variance. If I were really intent on improving this model, I think the hard work is going to come from yielding additional informative features from my data source.
+Overall I'm frankly a little disappointed with how little my tinkering improved the model. I suppose this is real data after all, flaws included. I look forward to seeing what a tree-based model can do for us. Ultimately, I think that we simply do not have enough meaningful features to explain all of our variance. If I were really intent on improving this model, I think the hard work is going to come from yielding additional informative features from my data source.
