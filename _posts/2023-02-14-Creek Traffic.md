@@ -67,47 +67,47 @@ This analysis will begin by investigating a handful of metrics, and selecting a 
 Number of ticks provides a good starting point by which to judge a route. It is a simple representation of magnitude of use. Furthermore, it represents the number of entries for which the other metrics are based on. If the number of ticks is low, then the climb is likely not often climbed. With too few entries, we cannot be confident that our additional metrics are accurate representations.
 
 From a basic histogram, we quickly get a good idea of the disparity of traffic amongst the route population.
-{% include creak_traffic/NumTicks_Hist.html %}
+{% include creek_traffic/NumTicks_Hist.html %}
 With such extreme outliers, this is better represented as a percentile plot.
-{% include creak_traffic/NumTicks_Perc.html %}
+{% include creek_traffic/NumTicks_Perc.html %}
 
 We can see from this percentile plot just how many routes have so few ticks. **30% of climbs have three or less ticks, and 50% of climbs have a dozen or less ticks!** This gives a hint as to how concentrated use might be with so many documented routes left untouched.
 
 ### Highly Trafficked Routes
 It is intuitive that a small share of routes constitute much of the traffic. The [**80/20**](https://en.wikipedia.org/wiki/Pareto_principle) Rule suggests that 80% of consequences come from 20% of causes known as the vital few. In this context that would mean that 80% of traffic comes from 20% of routes. Let’s see if that is true.
 
-{% include creak_traffic/NumTicks_PercResp.html %}
+{% include creek_traffic/NumTicks_PercResp.html %}
 
 It is almost serendipitous that **20% of climbs are responsible for about 83% of traffic.** This comes out to about 300 climbs.
 
 Furthermore, just **30 routes are responsible for 30% of traffic.**
 
-{% include creak_traffic/NumTicks_NMost.html %}
-{% include creak_traffic/NumTicks_Top30.html %}
+{% include creek_traffic/NumTicks_NMost.html %}
+{% include creek_traffic/NumTicks_Top30.html %}
 
 Anyone who has climbed at Indian Creek probably recognize the majority of these names, and anyone can tell you that the wear is noticeable on most of them. These routes make up a solid base for our priority list.
 
 <details open>
 <summary><b>Number of Ticks Table</b></summary>
-{% include creak_traffic/NumTicks_Table.html %}
+{% include creek_traffic/NumTicks_Table.html %}
 </details>
 <br><br>
 ### Highly Trafficked Walls
 If community outreach is to be done in person, then focusing effort on high traffic crags is preferable. We can simply sum all  For the most part it is not very surprising. It certainly cements the reputation of Supercrack / Donnelly / Battle of the Bulge as a powerhouse valley.
 
-{% include creak_traffic/NumTicks_Walls.html %}
+{% include creek_traffic/NumTicks_Walls.html %}
 
 It is even better to normalize by the amount of routes available at the wall. This list is a much more accurate depiction of crowdedness. Notably, it ranks the Six Shooter towers very high, as most people are only there to climb the single classic on the formation. It also ranks some notorious favorite walls like Cat and Reservoir quite low, as they have plentiful routes to handle the traffic. If you climb often in the Creek, you'll probably find this plot largely accurate.
 
-{% include creak_traffic/NumTicksNorm_Walls.html %}
+{% include creek_traffic/NumTicksNorm_Walls.html %}
 
 
 ## Settling on a Minimum Number of Ticks
 All other traffic metrics are “deeper” investigations into tick trends, and depend on the number of ticks to obtain data validity. With too few ticks, the additional metrics become meaningless. This, for example, can be manifested in a high number of perfect 0’s or 1’s for a metric that is a ratio from 0 to 1. I’ve found through investigation of the various metric’s histograms at different cutoffs, that a value of 30 is a good compromise that minimizes these errant values while keeping as many entries in the population as possible. Though, the point of the study is to discover notably high traffic climbs. 30 ticks is only approximately the 60th percentile. A value of 100 feels more appropriate at the 80th percentile. For this reason, **I would suggest a minimum cutoff of 30 ticks, and a typical cutoff of 100 ticks.**
 
-{% include creak_traffic/Tick_Cutoff_None.html %}
-{% include creak_traffic/Tick_Cutoff_30.html %}
-{% include creak_traffic/Tick_Cutoff_100.html %}
+{% include creek_traffic/Tick_Cutoff_None.html %}
+{% include creek_traffic/Tick_Cutoff_30.html %}
+{% include creek_traffic/Tick_Cutoff_100.html %}
 
 ## Tick Velocity
 Ranking by overall number of ticks is a great start, but fails to normalize for any time related factor. For example, a climb may have been established later or even omitted from the mountain project database for some time. A climb such as this may actually experience heavy traffic but would not get picked up when ranking by number of ticks alone. The goal of this metric is to catch routes that are experiencing a burst in traffic within a recent time frame.
@@ -115,22 +115,22 @@ Ranking by overall number of ticks is a great start, but fails to normalize for 
 Since climbing is heavily seasonal, it makes the most sense to partition by year to suppress the noise of that natural seasonal cycle.
 
 Let's take a look at ticks over the years for a select subset of routes. This is every 10th route as ordered by highest sum ticks.
-{% include creak_traffic/YoY_Sum_Ticks.html %}
+{% include creek_traffic/YoY_Sum_Ticks.html %}
 Regardless of overall popularity, all routes tend to gain ticks year over year. It is likely that Mountain Project use as well as the propensity of a given climber to tick after climbing are increasing. It is also likely that climbing overall and climbing at Indian Creek specifically are becoming more popular.
 
 Let's investigate this deeper on all routes with >100 ticks.
-{% include creak_traffic/YoY_Sum_Ticks_Box.html %}
-{% include creak_traffic/Mean_YoY_Sum_Ticks_Box.html %}
+{% include creek_traffic/YoY_Sum_Ticks_Box.html %}
+{% include creek_traffic/Mean_YoY_Sum_Ticks_Box.html %}
 
 2020 experienced the first negative median difference since recording began. This is most likely a result of covid and related fears of exposure limiting travel. 2021 was subsequently a breakout year as covid concerns leveled out, and outdoor recreation gained boosted popularity. The jury is still out on 2022, it may turn out to be a relative return to "normal" expected growth or a short pull-back from the previous year extreme and thus a continuation of more extreme exponential growth. Based on the box plots, it seems that YoY change was particularly extreme in both directions through the covid years. It will be interesting to see how this manifests in the coming years.
 
 Let's see if we can identify specific routes that seem to be experiencing a consistent increase in popularity, outside of what may be considered a normal velocity. We normalize by number of ticks once again in order to decouple raw popularity. We also only consider routes with more than 100 ticks, and consider only the last 5 years so to prioritize a recent time frame.
-{% include creak_traffic/Norm_Average5yr_Tick_Velocity.html %}
+{% include creek_traffic/Norm_Average5yr_Tick_Velocity.html %}
 
 So we get 0.052 as an upper fence. That makes a fine cutoff.
 <details open>
 <summary><b>Tick Velocity Table</b></summary>
-{% include creak_traffic/Tick_Velo_Table.html %}
+{% include creek_traffic/Tick_Velo_Table.html %}
 </details>
 <br><br>
 It is starkly apparent to me that these routes tend to be quite short for Indian Creek standard, typically in the 45-60ft range compared to a more typical 80-100ft. A shorter climb is usually more approachable, so it is sensible that as climbs like these are discovered by a wider audience that they gain popular sentiment.
@@ -146,13 +146,13 @@ A low lead ratio designates that the climb is most often top roped. If one’s p
 
 Let's take a look at the histogram for lead ratio.
 
-{% include creak_traffic/Tick_Cutoff_100_2.html %}
+{% include creek_traffic/Tick_Cutoff_100_2.html %}
 
 A natural cutoff would be to look at outlier values below the lower fence, but I’m going to relax that cutoff slightly 0.4 to cast a slightly wider net.
 
 <details open>
 <summary><b>Heavily Rop Roped Table</b></summary>
-{% include creak_traffic/LeadRatio_Table.html %}
+{% include creek_traffic/LeadRatio_Table.html %}
 </details>
 <br><br>
 Interestingly, every one of these routes with notable exceptions of “Fingers In A Lightsocket” and “Binge and Purge” are able to be top roped from a neighboring easier route. None of these routes are notably dangerous, with the exception of “Fingers in A Lightsocket” which is known for ripping cams at the crux and even cleaving a fingertip (look up at your own risk). It would be unwise to encourage people to lead a climb with particular danger involved, it is probably best not to make a comment.
@@ -165,13 +165,13 @@ Typically, people will attempt a route until they obtain a clean send, then move
 
 A simple sum of all repeat sends ends up looking almost identical to the list of total number of ticks. The metric is best normalized by the total number of ticks. This will provide us with the ratio of ticks that are repeat sends.
 
-{% include creak_traffic/RepeatSends_Hist.html %}
+{% include creek_traffic/RepeatSends_Hist.html %}
 
 With an upper fence at ~0.42, I'm again going to relax the cutoff to 0.33.
 
 <details open>
 <summary><b>Repeat Sender Table</b></summary>
-{% include creak_traffic/RepeatSender_Table.html %}
+{% include creek_traffic/RepeatSender_Table.html %}
 </details>
 <br><br>
 
@@ -186,7 +186,7 @@ C<sub>Score</sub> = 0.4 \* Z<sub>Num Ticks</sub> + 0.3 \* Z<sub>Tick Velo</sub> 
 
 In what may seem a silly thing to do, the cumulative score can be calculated as a Z-score as well. This re-casts these numbers from an arbitrary scale to a more meaningful frame of reference.
 
-{% include creak_traffic/Cum_Hist.html %}
+{% include creek_traffic/Cum_Hist.html %}
 
 At a glance, I would qualify any route outside the upper fence at ~1.75 as "critical" and any route in the 0.35-1.75 range as "notable".
 
@@ -194,7 +194,7 @@ The following table is ordered by cumulative metric with the worst offender at t
 
 <details open>
 <summary><b>Combination Metric Table</b></summary>
-{% include creak_traffic/Conc_Table.html %}
+{% include creek_traffic/Conc_Table.html %}
 </details>
 <br><br>
 
