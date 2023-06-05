@@ -1,6 +1,6 @@
 ---
 title: "Managing Climber Impact: Indian Creek Raptor Closure Violations"
-date: 2023-05-15
+date: 2023-06-05
 img_path: /images/creek_raptors/
 ---
 # Introduction
@@ -9,7 +9,7 @@ Each year from mid/late February to late August the Bureau of Land Management (B
 ![Eagles](eagles.png)
 *Peregrine Falcon (left) and Golden Eagle (right)  [[Source 1](https://www.allaboutbirds.org/guide/Peregrine_Falcon/id)] [[Source 2](https://birdfact.com/articles/how-big-are-golden-eagles)]*
 
-As with any conservation effort, there is much debate with regard to the impact of the effort and the effect on recreational access. Some areas like Yosemite have the funding to [check for raptor presence throughout the season](https://www.outsideonline.com/outdoor-adventure/climbing/climbers-changing-outdated-raptor-closures-peregrine-falcon/), and open access quickly as the birds move on. Other areas such as Indian Creek likely do not have the funding for such efforts, and as a result institute blanket bans over a largely pre-determined time period. In the case of the Indian Creek closures, the bans are actually considered voluntary, and are largely self-regulated by the community. While there are plenty of people who will argue online about the merits of this and that, I will apathetic to these arguments and focus on the data analysis. I will say that these "violators" have not done anything "wrong" as the closure is voluntary, and I believe that the BLM has the best interests of both the land and its users in mind. Such to say, let's just all get along. I've also avoided referencing usernames, as I do not want to attract negative attention to anyone. If you really want to find people out it is not difficult. If you really don't want to be found out, make your profile private.
+As with any conservation effort, there is much debate with regard to the impact of the effort and the effect on recreational access. Some areas like Yosemite have the funding to [check for raptor presence throughout the season](https://www.outsideonline.com/outdoor-adventure/climbing/climbers-changing-outdated-raptor-closures-peregrine-falcon/), and open access quickly as the birds move on. Other areas such as Indian Creek likely do not have the funding for such efforts, and as a result institute blanket bans over a largely pre-determined time period. In the case of the Indian Creek closures, the bans are actually considered voluntary, and are largely self-regulated by the community. While there are plenty of people who will argue online about the merits of this and that, I will be  apathetic to these arguments and focus on the data analysis. I will say that these "violators" have not done anything "wrong" as the closure is voluntary, and I believe that the BLM has the best interests of both the land and its users in mind. I've also avoided referencing usernames, as I do not want to attract negative attention to anyone. If you really want to find people out it is not difficult. If you really don't want to be found out, make your profile private.
 
 # Purpose
 The purpose of this analysis is to answer the basic **when, where, who** of these raptor closure violations in order to better focus conservation efforts.
