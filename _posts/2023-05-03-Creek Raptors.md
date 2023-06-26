@@ -4,12 +4,12 @@ date: 2023-06-05
 img_path: /images/creek_raptors/
 ---
 # Introduction
-Each year from mid/late February to late August the Bureau of Land Management (BLM) announces a voluntary closure of certain Indian Creek climbing crags in order to protect raptors as they nest and raise their young until they fledge. It is important to note that these closures are entirely voluntary, and self regulated by the community. These types of closures are relatively common in popular climbing areas such as Trout Creek, Pinnacles, Zion and Yosemite. The purpose of these closures is to give these uninhibited space to build their nests and raise their young. The peregrine falcon is of particular interest, originally endangered by use of [DDT](https://en.wikipedia.org/wiki/DDT) pesticide which diminished fertility and thinned eggshells. In 1975 the population hit a low of [324](https://www.sciencenews.org/article/50-years-ago-ddt-pushed-peregrine-falcons-edge-extinction) nesting pairs, and as of 2020 the North American population exceeds [72,000](http://datazone.birdlife.org/species/factsheet/peregrine-falcon-falco-peregrinus/text). Golden eagles are another raptor of concern. Though never listed as endangered, it is a protected species that is impacted by human activity. While the status of these raptors is not critical, there still exists a cogent basis to co-exist respectfully with these animals.
+Each year from mid/late February to late August the Bureau of Land Management (BLM) announces a voluntary closure of certain Indian Creek climbing crags in order to protect raptors as they nest and raise their young until they fledge. These types of closures are relatively common in popular climbing areas such as Trout Creek, Pinnacles, Zion and Yosemite. The purpose of these closures is to give these uninhibited space to build their nests and raise their young. The peregrine falcon is of particular interest, originally endangered by use of [DDT](https://en.wikipedia.org/wiki/DDT) pesticide which diminished fertility and thinned eggshells. In 1975 the population hit a low of [324](https://www.sciencenews.org/article/50-years-ago-ddt-pushed-peregrine-falcons-edge-extinction) nesting pairs, and as of 2020 the North American population exceeds [72,000](http://datazone.birdlife.org/species/factsheet/peregrine-falcon-falco-peregrinus/text). Golden eagles are another raptor of concern. Though never listed as endangered, it is a protected species that is impacted by human activity. While the status of these raptors is not critical, there still exists a cogent basis to co-exist respectfully with these animals.
 
 ![Eagles](eagles.png)
 *Peregrine Falcon (left) and Golden Eagle (right)  [[Source 1](https://www.allaboutbirds.org/guide/Peregrine_Falcon/id)] [[Source 2](https://birdfact.com/articles/how-big-are-golden-eagles)]*
 
-As with any conservation effort, there is much debate with regard to the impact of the effort and the effect on recreational access. Some areas like Yosemite have the funding to [check for raptor presence throughout the season](https://www.outsideonline.com/outdoor-adventure/climbing/climbers-changing-outdated-raptor-closures-peregrine-falcon/), and open access quickly as the birds move on. Other areas such as Indian Creek likely do not have the funding for such efforts, and as a result institute blanket bans over a largely pre-determined time period. In the case of the Indian Creek closures, the bans are actually considered voluntary, and are largely self-regulated by the community. While there are plenty of people who will argue online about the merits of this and that, I will be  apathetic to these arguments and focus on the data analysis. I will say that these "violators" have not done anything "wrong" as the closure is voluntary, and I believe that the BLM has the best interests of both the land and its users in mind. I've also avoided referencing usernames, as I do not want to attract negative attention to anyone. If you really want to find people out it is not difficult. If you really don't want to be found out, make your profile private.
+As with any conservation effort, there is much debate with regard to the impact of the effort and the effect on recreational access. Some areas like Yosemite have the funding to [check for raptor presence throughout the season](https://www.outsideonline.com/outdoor-adventure/climbing/climbers-changing-outdated-raptor-closures-peregrine-falcon/), and open access quickly as the birds move on. Other areas such as Indian Creek likely do not have the funding for such efforts, and as a result institute blanket bans over a largely pre-determined time period. In the case of the Indian Creek closures, the bans are actually considered voluntary, and are in large part self-regulated by the community. While there are plenty of people who will argue online about the merits of this and that, I will be  apathetic to these arguments and focus on the data analysis. I've also avoided referencing usernames, as I do not want to attract negative attention to anyone. If one really wants to find people out it is not difficult as the information is public. If one really does not want to be found out, Mountain Project has a setting that makes ticks private.
 
 # Purpose
 The purpose of this analysis is to answer the basic **when, where, who** of these raptor closure violations in order to better focus conservation efforts.
@@ -41,9 +41,11 @@ It seems that raptor closures began in 2018. Raptor closure season has not yet e
 # A Note on Data Bias
 Since this data is pulled entirely from Mountain Project, there is quite a bit of reporting bias one should be aware of.
 * There are likely many violators who do not make their violation known through ticking.
+* Mountain Project is an incomplete listing of crags and routes, which means that some violations may not be able to be recorded even if they otherwise would be.
 * Mountain Project users are more likely to be experienced or serious climbers, so this data likely under-represents new climbers.
+* The climber that meticulously ticks their climbs is a particular type of climber with common behaviour that may be correlated with their likelihood to violate the infraction.
 
-As such we must take this analysis with a grain of salt, as it provides only a partial and biased view of the issue.
+As such we must take this analysis with a grain of salt, as it provides only a partial and biased view of the issue. While it is imperfect, it is at least a well structured perspective on the issue.
 
 # When
 ## Year to Year
@@ -56,7 +58,7 @@ We can see that 2018, 2020, and 2022 were comparatively good years. 2019 and esp
 
 ### 2018
 * 2018 was a good year.
-* This was the first year of the raptor closure effort. It is possible that stewards and representatives were effective in getting the word out.
+* This was the first year of the raptor closure effort. It is possible that stewards and representatives were effective in getting the word out. Though it would be similarly convincing to suggest that the first year of an awareness campaign should be weak as it takes time for news to spread.
 * Only 3 walls were closed this year compared to the growing list of closed areas in subsequent years.
 * Two of the three closed walls (Cat and Reservoir) have parking off the main road and near the beef basin intersection. It is possible that fear of community and official judgment keeps violations at these front and center crags to a minimum.
 
@@ -64,18 +66,18 @@ We can see that 2018, 2020, and 2022 were comparatively good years. 2019 and esp
 * 2019 was a bad year.
 * It is possible the community learned more broadly that the closures were voluntary.
 * 75% of these violations occurred during the high season of March/April/May.
-* A whopping 53% are attributed to the 2nd Meat Wall alone. The 2nd Meat Wall was added to the closure list this year, but so were other walls and they did not carry such volume.
+* A whopping 53% are attributed to the 2nd Meat Wall alone. The 2nd Meat Wall was added to the closure list this year, but so were other walls and they did not carry such volume. Perhaps the closure of this wall was poorly communicated.
 
 ### 2020
 * 2020 was a good year.
-* Indian Creek access was limited significantly due to the covid-19 pandemic. There were enforcement personnel patrolling the area urging non-local recreationists to leave. The highest level of uncertainty occurred during the closure period, so people were less likely to travel anyway.
+* Indian Creek access was limited significantly due to the covid-19 pandemic. There were enforcement personnel patrolling the area urging non-local recreationists to leave. The highest level of covid uncertainty occurred during the closure period, so people were less likely to travel anyway.
 * Interestingly, the normalized rate was low even accounting for the reduced usage. I suggest this may be due to increased enforcement presence reducing would-be violations. Basically, people already feel like they are doing something wrong by being there, many would not want to take additional risky action.
 
 ### 2021
 * 2021 was a notably bad year.
 * In this year 73% of violations occurred in the high season. This rises to 98% if you count February.
 * 48% of violations occurred at Selfish Wall this year.
-* At Selfish Wall, the route Hand Solo (5.9, 66x violations) accounts for 12% of all violations alone. That and 5 other Selfish Wall routes such The Ooze (5.10-, 27x), Breakfast Social (5.10-, 22x), Tokyo Drift (5.11-, 15x), Tag Team (5.10-, 14x), Turd Blossom (5.10, 14x) make up 30% of all violations. It is notable that this wall has a high concentration of high quality less difficult routes. These are desirable and accessible climbs so it is expected that more people would be willing to violate the closure to climb these.
+* At Selfish Wall, the route Hand Solo (5.9, 66x violations) accounts for 12% of all violations alone. That and 5 other Selfish Wall routes such The Ooze (5.10-, 27x), Breakfast Social (5.10-, 22x), Tokyo Drift (5.11-, 15x), Tag Team (5.10-, 14x), Turd Blossom (5.10, 14x) make up 30% of all violations. It is notable that this wall has a high concentration of high quality less difficult routes. These are desirable and accessible climbs so it is expected that more people would be willing to violate the closure to climb these. The shocking volume here suggests that it is possible that word has gotten out amongst organized groups such as school groups or climbing event organizers who desire a concentration of accessible moderate routes.
 * Selfish Wall is a ways off the main road, so there is less social and enforcement pressure.
 
 ### 2022
@@ -114,7 +116,7 @@ We can inspect violations by crag to help identify which areas are consistently 
 Cat Wall and Reservoir Wall we would expect to be so high, as they are hugely popular crags. Selfish Wall and to a lesser extent 2nd Meat Wall are standouts, as they receive many violations given their lower popularity. Crags such as Suburbia, Slug Wall, Shock and Awe and especially Echoes Wall are notable in that a comparatively larger portion of their ticks occur during the closure season.
 
 ## By Route
-Knowing which specific routes are offenders allows for targeted additional messaging in guidebooks to urge would-be climbers of the route to respect the closures.
+Knowing which specific routes are offenders allows for targeted additional messaging on Mountain Project to urge would-be climbers of the route to respect the closures.
 {% include creek_raptors/route_viol.html %}
 {% include creek_raptors/route_tot.html %}
 {% include creek_raptors/route_norm.html %}
@@ -155,3 +157,4 @@ Based on the analysis done here, I have the following conclusory comments.
 * Cat Wall and Reservoir wall are expectedly high volume. Selfish Wall and to a lesser extend 2nd Meat Wall are particular standouts as a share of their overall ticks. I believe this is due to their selection of high quality moderate routes, and their relative remoteness.
 * It may be helpful to add additional messaging to specific high traffic routes on Mountain Project. Routes like Hand Solo are shockingly high contributors.
 * It seems that raw share of violations can be attributed to a larger group of less experienced climbers, but that high volume and repeat violators are more likely to be from a smaller group of experienced climbers. It is important not to assume that lack of compliance is due to simple unawareness, you must also impress the importance of the issue on experienced recreationists.
+* There exists an interesting relationship here, whereby increasing communication of the closures also reduces the visibility of the violations. I see this most likely in the case of area or route specific closure warnings, which would dissuade users from recording their violations on Mountain Project. In taking action to solve the problem, one might actually make it more difficult to gauge the status of the problem.
