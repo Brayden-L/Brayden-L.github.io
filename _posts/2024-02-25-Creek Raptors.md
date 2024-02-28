@@ -1,6 +1,6 @@
 ---
 title: "Managing Climber Impact: Indian Creek Raptor Closure Violations"
-date: 2023-06-05
+date: 2024-02-25
 img_path: /images/creek_raptors/
 ---
 # Introduction
@@ -36,7 +36,7 @@ My data actually contains quite a bit more information (Some of which can be see
 I collected raptor closure details from [blog posts](https://www.blm.gov/press-release?combine=raptor&term_node_tid_depth%5B%5D=27&field_release_date_value=1) on the BLM website.
 {% include creek_raptors/raptor_closure_table.html %}
 
-It seems that raptor closures began in 2018. Raptor closure season has not yet ended for 2023 so I am omitting the current year. This gives us a range of five years of data from 2018-2022.
+It seems that raptor closures began in 2018. This gives us a range of six years of data from 2018-2023.
 
 # A Note on Data Bias
 Since this data is pulled entirely from Mountain Project, there is quite a bit of reporting bias one should be aware of.
@@ -52,7 +52,7 @@ We begin with yearly variation as our first element of interest.
 {% include creek_raptors/year_tot.html %}
 {% include creek_raptors/year_norm.html %}
 
-We can see that 2018, 2020, and 2022 were comparatively good years. 2019 and especially 2021 were bad years. When accounting for overall use I do not see any additional insight.
+We can see that 2018, 2020, 2022, and 2023 were comparatively good years. 2019 and especially 2021 were bad years. When accounting for overall use I do not see any additional insight.
 
 ### 2018
 * 2018 was a good year.
@@ -82,6 +82,10 @@ We can see that 2018, 2020, and 2022 were comparatively good years. 2019 and esp
 * 2022 was a good year.
 * The distribution among crags was quite balanced, with no real outliers. It is the same for routes.
 * The improvement from 2021 to 2022 is impressive. I do not know for sure, but I believe this was the first year that the Mountain Project Indian Creek area moderators added the Raptor Closure tags to the climbing areas themselves. Either the increased visibility of the closure truly reduced violations, or people were less willing to record their violations with a tick right under a big sign that says not to do just that!
+
+### 2023
+* 2023 was a good year.
+* I believe this year primarily shows the effective impact of good communication channels initiated in 2022.
 
 ## Month to Month
 We would like to inspect month to month variation to help pin down which part of the closure season is most pertinent. This helps to determine when steward presence is most important.
