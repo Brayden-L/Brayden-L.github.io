@@ -1,0 +1,85 @@
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-cly1{text-align:left;vertical-align:middle}
+.tg .tg-yla0{font-weight:bold;text-align:left;vertical-align:middle}
+</style>
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-yla0">Parameter</th>
+    <th class="tg-yla0">Value</th>
+    <th class="tg-yla0">Description</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-cly1">Pre-Train Model Type</td>
+    <td class="tg-cly1">VGG11</td>
+    <td class="tg-cly1">Base model architecture, AlexNet, VGG11, Resnet Etc.</td>
+  </tr>
+  <tr>
+    <td class="tg-cly1">Pre-Train Type</td>
+    <td class="tg-cly1">Full Re-Train</td>
+    <td class="tg-cly1">Full re-train or fixed feature extractor.</td>
+  </tr>
+  <tr>
+    <td class="tg-cly1">Epochs</td>
+    <td class="tg-cly1">50</td>
+    <td class="tg-cly1">Number of epochs</td>
+  </tr>
+  <tr>
+    <td class="tg-cly1">Batch Size</td>
+    <td class="tg-cly1">32</td>
+    <td class="tg-cly1">Batch size of mini-batched sampling method.</td>
+  </tr>
+  <tr>
+    <td class="tg-cly1">Starting Learning Rate</td>
+    <td class="tg-cly1">0.0001</td>
+    <td class="tg-cly1">Learning rate at first epoch.</td>
+  </tr>
+  <tr>
+    <td class="tg-cly1">Learning Rate Schedule Type</td>
+    <td class="tg-cly1">Exponential Decay</td>
+    <td class="tg-cly1">Constant, Exponential Decay, OneCycle, Cosine Anneal w/ Warm Restarts</td>
+  </tr>
+  <tr>
+    <td class="tg-cly1">Exponential Decay Factor</td>
+    <td class="tg-cly1">0.01</td>
+    <td class="tg-cly1">Proportion of starting LR to decay to.</td>
+  </tr>
+  <tr>
+    <td class="tg-cly1">Weight Decay</td>
+    <td class="tg-cly1">0.001</td>
+    <td class="tg-cly1">Weight decay added </td>
+  </tr>
+  <tr>
+    <td class="tg-cly1">Dropout</td>
+    <td class="tg-cly1">0.5</td>
+    <td class="tg-cly1">Dropout proportion in added fully connected layer.</td>
+  </tr>
+  <tr>
+    <td class="tg-cly1">Complex Image Transform</td>
+    <td class="tg-cly1">FALSE</td>
+    <td class="tg-cly1">Random flipping and color jitter.</td>
+  </tr>
+  <tr>
+    <td class="tg-cly1">Class Imbalance Split Handling</td>
+    <td class="tg-cly1">TRUE</td>
+    <td class="tg-cly1">Stratified data splitting.</td>
+  </tr>
+  <tr>
+    <td class="tg-cly1">Class Imbalance Sample Handling</td>
+    <td class="tg-cly1">TRUE</td>
+    <td class="tg-cly1">Weighted random sampling</td>
+  </tr>
+  <tr>
+    <td class="tg-cly1">Class Imbalance Loss Handling</td>
+    <td class="tg-cly1">FALSE</td>
+    <td class="tg-cly1">Weighted cross entropy loss</td>
+  </tr>
+</tbody>
+</table>
