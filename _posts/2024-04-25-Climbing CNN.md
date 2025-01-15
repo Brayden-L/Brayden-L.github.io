@@ -5,7 +5,7 @@ img_path: /images/climbing_cnn/
 ---
 
 # Check Out a Deployed Demonstration of the Model
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://climbing-cnn-levyb.streamlit.app/)
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://levybclimbingcnn.streamlit.app/)
 
 If you want to check out my code:
 
